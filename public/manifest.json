@@ -1,0 +1,25 @@
+{
+  "name": "Leofcoin Web App",
+  "short_name": "Leofcoin",
+  "icons": [{
+    "src": "/sources/leofcoin_48.png",
+    "type": "image/png",
+    "sizes": "48x48"
+  }, {
+    "src": "/sources/leofcoin_96.png",
+    "type": "image/png",
+    "sizes": "96x96"
+  }, {
+    "src": "/sources/leofcoin_128.png",
+    "type": "image/png",
+    "sizes": "128x128"
+  }, {
+    "src": "/sources/leofcoin_192.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "display": "standalone",
+  "background_color": "#eee",
+  "theme_color": "#1c2c3b"
+}
