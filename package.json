@@ -1,0 +1,23 @@
+{
+  "name": "leofcoin",
+  "version": "0.1.0-alpha",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd public && live-server --open=index.html --port=5000",
+    "precache": "sw-precache --config=sw-precache-config.js",
+    "deploy": "sh deploy.sh"
+  },
+  "author": "Glenn Vandeuren <vandeurenglenn@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leofcoin/leofcoin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leofcoin/leofcoin/issues"
+  },
+  "homepage": "https://github.com/leofcoin/leofcoin#readme",
+  "devDependencies": {
+    "sw-precache": "^5.2.1"
+  }
+}
