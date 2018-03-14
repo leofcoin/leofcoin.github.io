@@ -4,7 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leofcoin</title>
+    <meta name="description" content="Javascript based blockchain">
+    <meta name="keywords" content="JavaScript,Blockchain,fast,blocktime,dag,chain,dagchain,leofcoin,leofcoin-core,core">
+    <meta name="title" content="leofcoin">
     <link rel="manifest" href="manifest.json">
+    <script type="application/ld+json"> // Google SEO
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "https://leofcoin.org",
+        "name": "Leofcoin Organization",
+        "contactPoint": [
+          { "@type": "ContactPoint",
+            "url": "https://info.leofcoin.org",
+            "contactType": "customer service"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "url": "https://leofcoin.org",
+        "applicationCategory": "Blockchain",
+        "operatingSystem": ["Windows", "OSX", "Linux", "Anderoid"],
+        "featureList": ["wallet", "miner", "explorer"],
+        "softwareVersion": "0.1.0-pre_alpha"
+      }
+    </script>
+
     <script>
       if ('serviceWorker' in navigator) {
         // Delay registration until after the page has loaded, to ensure that our
@@ -31,6 +61,7 @@
                       // It's the perfect time to display a "New content is available; please refresh."
                       // message in the page's interface.
                       console.log('New or updated content is available.');
+                      location.reload()
                     } else {
                       // At this point, everything has been precached.
                       // It's the perfect time to display a "Content is cached for offline use." message.
@@ -52,6 +83,7 @@
     </script>
     <link rel="stylesheet" href="sources/fontawesome.min.css">
     <link rel="stylesheet" href="sources/fa-brands.min.css">
+    <link rel="stylesheet" href="sources/fa-solid.min.css">
     <style media="screen">
       html, body {
         margin: 0;
@@ -66,9 +98,9 @@
         -webkit-font-smoothing: antialiased;
       }
       body {
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 400;
-        line-height: 20px;
+        line-height: 24px;
 
         --header-height: 48px;
         --shadow-elevation-2dp:
@@ -95,6 +127,9 @@
       p, h1, h2, h3, h4 {
         margin: 0;
       }
+      h2 {
+        padding-bottom: 16px;
+      }
       a {
         text-decoration: none;
       }
@@ -109,14 +144,10 @@
         /* -webkit-app-region: drag; */
         /* cursor: move; */
       }
-      .appname {
-        color: #EEE;
-        font-size: 24px;
-      }
       footer {
         display: flex;
         flex-direction: column;
-        height: 140px;
+        /* height: 140px; */
         background: #1c2c3b;
       }
       main {
@@ -129,11 +160,11 @@
       summary {
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 12px 24px;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
-        max-width: 420px;
+        max-width: 720px;
         /* align-items: center; */
         justify-content: center;
       }
@@ -188,14 +219,6 @@
       .flex {
         flex: 1;
       }
-      h3 {
-        font-size: 22px;
-        padding-bottom: 0.8em;
-      }
-      .download {
-
-        min-width: 256px;
-      }
       .link {
         display: flex;
         flex-direction: row;
@@ -206,10 +229,11 @@
         font-size: 24px;
       }
       .link h3 {
+        font-size: 24px;
         padding: 0;
       }
-      .download i {
-        padding-right: 12px;
+      i {
+        padding-right: 6px;
       }
       .fab {
         font-size: 42px;
@@ -217,18 +241,20 @@
       main {
         position: relative;
         display: block;
-        overflow: auto;
-        height: calc(100% - 188px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: calc(100% - 48px);
       }
       main section {
-        padding: 24px;
+        padding: 24px 12px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 100%;
-        min-height: calc(100% / 3);
+        font-size: 20px;
+        color: #555;
       }
       .flex-two {
         flex: 2;
@@ -247,83 +273,328 @@
       .row {
         display: flex;
         align-items: center;
+        flex-direction: row;
+      }
+      [disabled] {
+        pointer-events: none;
+        color: #888;
+      }
+
+      .downloads.hide, .mobile-downloads {
+        display: flex;
+        flex-direction: row;
+        opacity: 0;
+        height: 0px;
+        width: 0px;
+      }
+
+      .mobile-downloads.show {
+        opacity: 1;
+        height: auto;
+        width: auto;
+      }
+
+      .download {
+        min-width: 256px;
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        transform: translate(-50px, -50px);
+        transition: transform ease-out 360ms opacity ease-out 360ms;
+      }
+
+      .other-downloads-view {
+        position: absolute;
+        width: 100%;
+      }
+
+      .other-downloads-view.shown {
+        transform: translateY(-100%);
+        background: #1c2c3b;
+      }
+      .download-section {
+        min-height: calc(100% / 4);
+      }
+      .other-downloads {
+        color: #EEE;
+        padding: 8px;
+        font-weight: 700;
+        width: fit-content;
+      }
+      .download:first-child {
+        margin-bottom: 24px;
+      }
+      .downloads {
+        color: #eee;
+      }
+      section:nth-child(odd) {
+        background-color: #1c2c3b;
+        color: #eee;
+      }
+      .features {
+        min-height: auto;
+      }
+      .features summary {
+        align-items: center;
+        justify-content: center;
+      }
+      .feature {
+        padding: 8px 16px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .welcome {
+        z-index: 100;
+        height: 480px;
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url('sources/leofcoin.svg');
+      }
+      .welcome-title {
+        max-width: 320px;
+        font-size: 48px;
+        line-height: 52px;
+        padding-bottom: 16px;
+        font-weight: 900;
+        color: #eee;
+        letter-spacing: 6px;
+      }
+      .about {
+        height: 344px;
+      }
+      @media (min-width: 721px) {
+        .features summary {
+          flex-direction: row;
+        }
+      }
+      .jet {
+        position: absolute;
+        left: 0;
+        font-size: 364px;
+        color: rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+      }
+      .logo {
+        width: 30px;
+        padding-right: 12px;
       }
     </style>
   </head>
   <body>
     <header>
-      <h2 class="appname">LEOFCOIN</h2>
+      <a href="/">
+        <img class="logo" src="sources/leofcoin.svg"></img>
+      </a>
+      <span class="flex"></span>
+      <a href="#downloads" class="link">DOWNLOAD</a>
+      <!-- <a href="#about" class="link">about</a> -->
+      <!-- <a href="#contact" class="link">contact</a> -->
+      <!-- <a href="#info" class="link">roadmap</a> -->
     </header>
     <main>
-      <section>
+      <span class="hello-leofcoin" style="display: none;">
+        welcome to
+        <span>Leofcoin</span>
+      </span>
+
+      <span class="hello-info" style="display: none;">
+        <h2>A New JavaScript Based Blockchain</h2>
+      </span>
+
+      <section class="welcome">
+        <h2 class="welcome-title"></h2>
+        <h2 class="welcome-subtitle"></h2>
+      </section>
+
+
+
+      <section class="about" id="about">
+
+          <i class="fas fa-rocket jet"></i>
         <summary>
-          <h3>Welcome</h3>
-          <p>LEOFCOIN is new and still heavy in development, altough you can download a (hopefully) working test version below.</p>
+          <p>Leofcoin is a peer-to-peer Internet currency that enables instant payments to anyone with internet access in the world.</p>
+          <p>Leofcoin is open source & written in JavaScript for maximum client support.</p>
+          <p>Mathematics secures the network and empowers individuals to control their own finances.</p>
+          <p>Leofcoin features fast transactions and improved storage efficiency.</p>
+          <br>
+          <p>Leofcoin is javascript based and still heavy in development, altough you can download a (hopefully) working test version below.</p>
         </summary>
       </section>
 
-      <section style="background: #1c2c3b; color: #eee;">
+
+      <section class="download-section">
+        <summary class="download">
+          <a href="#downloads" class="other-downloads">Other Downloads</a>
+        </summary>
+      </section>
+      <section id="info">
         <summary>
+          <ul>
+            <li><strong>supply: </strong>3.780.000.000,00</li>
+            <li><strong>blocktime: </strong>10 seconds</li>
+            <li><strong>reward: </strong>150 LFC</li>
+            <li><strong>premine: </strong>None (except for the developers, testers, insiders (slackers))</li>
+          </ul>
+        </summary>
+      </section>
+
+
+      <section class="features">
+        <summary>
+
+          <!-- <span class="row"> -->
+            <span class="feature">
+              <i class="fas fa-street-view"></i>
+              user friendly
+            </span>
+            <span class="feature">
+              <i class="fas fa-code"></i>
+              open source
+            </span>
+          <!-- </span> -->
+          <!-- <span class="row"> -->
+            <span class="feature">
+              <i class="fas fa-fighter-jet"></i>
+              fast
+            </span>
+            <span class="feature">
+              <i class="fas fa-globe"></i>
+              worldwide
+            </span>
+          <!-- </span> -->
+        </summary>
+      </section>
+      <footer>
+        <section class="row">
+          <a class="link" href="https://join.slack.com/t/crypto-io/shared_invite/enQtMzIzMzUwNTMzODcyLWVjZTY1ZWY0ZDQxNDcyZjUwZDRkNmViZmRiM2EwNmNhMGFiMzIyYjQwYzZhZjY5OTc2Nzk2MDZlYzMxNmFjMWE">
+            <i class="fab fa-slack"></i>
+          </a>
+          <a class="link" href="https://github.com/leofcoin">
+            <i class="fab fa-github"></i>
+          </a>
+        </section>
+        <span class="flex"></span>
+        <section class="made-with">
+          Made With
+          <img class="icon" src="sources/icons/heart.svg"></img>
+          By
+          <a href="https://leofcoin.org/#contributors">
+            The Leofcoin Team
+          </a>
+        </section>
+        <section class="copyright" slot="copyright">
+          <img class="icon" src="sources/icons/copyright.svg"></img>
+          <span>2018 Leofcoin. Code licensed under the CC-BY-NC-SA-4.0 License.
+          Except as otherwise noted,
+          Documentation & media are licensed under CC-BY-4.0 License.</span>
+        </section>
+      </footer>
+    </main>
+
+    <main class="other-downloads-view">
+      <section>
+        <summary class="downloads">
           <h3>downloads</h3>
           <span class="row">
-            <a class="link download" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
+            <a class="link download windows" href="https://firebasestorage.googleapis.com/v0/b/leofcoin.appspot.com/o/Leofcoin%20Setup%200.1.0.exe?alt=media&token=875f4e9c-e27d-45b5-b642-9f58ee2e18df">
               <i class="fab fa-windows"></i>
-              <h3>windows</h3>
+              <h3>download for windows</h3>
             </a>
 
-            <a class="link download" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
+            <a class="link download linux" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d" disabled>
               <i class="fab fa-linux"></i>
-              <h3>linux</h3>
+              <h3>download for linux</h3>
             </a>
           </span>
 
           <span class="row">
-            <a class="link download" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
+            <a class="link download mac" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d" disabled>
               <i class="fab fa-apple"></i>
-              <h3>Mac OS X</h3>
+              <h3>download for Mac OS X</h3>
             </a>
 
-            <a class="link download" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
+            <a class="link download github" href="https://github.com/leofcoin/leofcoin-core" disabled>
               <i class="fab fa-github-alt"></i>
               <h3>Source Code</h3>
             </a>
           </span>
         </summary>
       </section>
-
-      <section>
-        <summary>
-          <h3>info</h3>
-          <ul>
-            <li>No premine (except for the developers, testers, insiders (slackers))</li>
-          </ul>
-        </summary>
-      </section>
     </main>
-    <footer>
-      <section>
-        <a class="link" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
-          <i class="fab fa-slack"></i>
-        </a>
-        <a class="link" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d">
-          <i class="fab fa-github"></i>
-        </a>
-      </section>
-      <span class="flex"></span>
-      <section class="made-with">
-        Made With
-        <img class="icon" src="sources/icons/heart.svg"></img>
-        By
-        <a href="https://crypto-io.github.io/#contributors">
-          The Leofcoin Team
-        </a>
-      </section>
-      <section class="copyright" slot="copyright">
-        <img class="icon" src="sources/icons/copyright.svg"></img>
-        <span>2018 Leofcoin. Code licensed under the CC-BY-NC-SA-4.0 License.
-        Except as otherwise noted,
-        Documentation & media are licensed under CC-BY-4.0 License.</span>
-      </section>
-    </footer>
+    <script src="sources/typed.min.js" charset="utf-8"></script>
+    <script>
+      window.isMobile = () => navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
+      const platform = () => navigator.platform.match(/Win|Mac|Linux/)[0];
+      const cloneDownloadNode = platform => {
+        const node = document.querySelector(`.download.${platform}`);
+        const cloned = node.cloneNode(true);
+        const summary = document.querySelector('summary.download');
+        summary.insertBefore(cloned, summary.querySelector('a'));
+      }
+      if (isMobile()) {
+        // document.querySelector('.mobile-downloads').classList.add('show');
+        // document.querySelector('.downloads').classList.add('hide');
+      } else {
+        switch (platform()) {
+          case 'Win':
+            cloneDownloadNode('windows')
+            break;
+          case 'Mac':
+            cloneDownloadNode('mac')
+            break;
+          case 'Linux':
+            cloneDownloadNode('linux')
+            break;
+        }
+      }
+      if (location.hash === '#downloads') {
+        location.href = location.href.replace('#downloads', '')
+      }
+      window.onhashchange = event => {
+        if (location.hash === '#downloads') {
+          document.querySelector('.other-downloads-view').classList.add('shown')
+        }
+      };
+
+      const typers = [['.welcome-title', '.hello-leofcoin'], ['.welcome-subtitle', '.hello-info']];
+
+      typers.map(type => new Typed(type[0], {
+        stringsElement: type[1],
+        typeSpeed: 0,
+        backSpeed: 0,
+        backDelay: ((typers.indexOf(type) * 12) * 100),
+        startDelay: 1100 * typers.indexOf(type),
+        loop: false,
+        showCursor: false
+      }));
+
+      document.querySelector('main').onscroll = event => {
+        const top = event.target.scrollTop;
+        const width = event.target.clientWidth;
+        const title = document.querySelector('.welcome-title');
+        const subtitle = document.querySelector('.welcome-subtitle');
+        const jet = document.querySelector('.jet');
+
+        if (top > 200) {
+          subtitle.style.opacity = 0;
+        } else if (top < 200) {
+          title.style = `transform: translateY(${top}px);`;
+          subtitle.style = `transform: translateY(${top}px) scale(${(200 - top) / 200});`;
+        }
+        const minmax = (min, max) => {
+          return Math.floor(min + Math.random() * ((max + 1) - min));
+        }
+
+        if ((top * 16) - 620 < (width + 620)) {
+          jet.style = `transform: translateX(${(top * 16) - 620}px) rotate(${minmax(45, 55)}deg);`;
+        }
+      }
+    </script>
   </body>
 </html>

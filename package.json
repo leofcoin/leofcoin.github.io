@@ -19,5 +19,8 @@
   "homepage": "https://github.com/leofcoin/leofcoin#readme",
   "devDependencies": {
     "sw-precache": "^5.2.1"
+  },
+  "dependencies": {
+    "typed.js": "^2.0.6"
   }
 }
