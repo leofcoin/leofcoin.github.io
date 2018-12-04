@@ -254,7 +254,7 @@
       .download {
         flex-direction: row;
         align-items: center;
-        min-width: 256px;
+        min-width: calc(100% / 2);
       }
 
       .hidden {
@@ -293,6 +293,8 @@
       }
       .downloads {
         color: #eee;
+        align-items: center;
+        padding: 0;
       }
       section:nth-child(odd) {
         background-color: #1c2c3b;
@@ -341,6 +343,9 @@
         .features summary {
           flex-direction: row;
         }
+        .download {
+          min-width: 256px;
+        }
       }
       .jet {
         position: absolute;
@@ -385,8 +390,21 @@
       .download.linux h3 {
         width: 100px;
       }
+      .download.mac h3 {
+        width: 120px;
+      }
       .downloads h3:first-child {
         padding-bottom: 24px;
+      }
+      .downloads .row {
+        width: 100%;
+        justify-content: center;
+      }
+      .other-downloads-view section {
+        height: 268px;
+      }
+      .other-downloads-view section summary{
+        justify-content: space-around;
       }
       .notification {
         display: flex;
@@ -587,7 +605,7 @@
           <span class="row">
             <a class="link download mac" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d" disabled>
               <i class="fab fa-apple"></i>
-              <h3>Mac OS X</h3>
+              <h3>Mac</h3>
             </a>
 
             <a class="link download github" href="https://github.com/leofcoin/leofcoin-core" disabled>
