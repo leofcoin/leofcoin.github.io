@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.appmaker.zatsyt",
+      "sha256_cert_fingerprints": ["9E:91:2F:6A:AE:C6:35:10:D7:EF:37:22:CF:DE:6F:C5:96:FD:71:2D:B8:EA:D0:17:36:4E:4E:C3:BC:8A:60:02"]
+    }
+  }
+]
