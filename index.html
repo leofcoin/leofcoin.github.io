@@ -101,10 +101,10 @@
       header {
         display: flex;
         flex-direction: row;
-        height: 48px;
+        height: 76px;
         background: #1c2c3b;
-        align-items: center;
-        padding: 8px 16px;
+        box-sizing: border-box;
+        padding: 0 16px;
         box-sizing: border-box;
         /* -webkit-app-region: drag; */
         /* cursor: move; */
@@ -366,7 +366,7 @@
         transform: translateX(-105%);
       }
       .logo {
-        width: 30px;
+        width: 56px;
         padding-right: 12px;
       }
       ul {
@@ -490,6 +490,7 @@
       <!-- <a href="#info" class="link">roadmap</a> -->
     </header>
     <main>
+
       <span class="hello-leofcoin" style="display: none;">
         welcome to
         <span>Leofcoin</span>
@@ -503,8 +504,6 @@
         <h2 class="welcome-title"></h2>
         <h2 class="welcome-subtitle"></h2>
       </section>
-
-
 
       <section class="about" id="about">
         <i class="fas fa-rocket jet"></i>
@@ -673,6 +672,7 @@
       document.querySelector('main').onscroll = event => {
         const top = event.target.scrollTop;
         const width = event.target.clientWidth;
+        const header = document.querySelector('header')
         const title = document.querySelector('.welcome-title');
         const subtitle = document.querySelector('.welcome-subtitle');
         const jet = document.querySelector('.jet');
@@ -683,6 +683,7 @@
           title.style = `transform: translateY(${top}px);`;
           subtitle.style = `transform: translateY(${top}px) scale(${(200 - top) / 200});`;
         }
+        console.log(top);
         const minmax = (min, max) => {
           return Math.floor(min + Math.random() * ((max + 1) - min));
         }
