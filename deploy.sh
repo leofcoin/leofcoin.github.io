@@ -2,8 +2,8 @@
 echo 'generate service-worker.js'
 npm run precache
 
-SOURCE_BRANCH="master"
-TARGET_BRANCH="gh-pages"
+SOURCE_BRANCH="code"
+TARGET_BRANCH="master"
 REF=$(git rev-parse --verify HEAD)
 MSG="Deployed to Github pages: ${REF}"
 
@@ -15,5 +15,5 @@ git init
 git add .
 git commit -m "${MSG}"
 
-git push "https://github.com/leofcoin/leofcoin" $SOURCE_BRANCH:$TARGET_BRANCH -f > /dev/null 2>&1
+git push "https://github.com/leofcoin/leofcoin.github.io" $SOURCE_BRANCH:$TARGET_BRANCH -f > /dev/null 2>&1
 cd ../

@@ -140,7 +140,7 @@
         height: 48px;
         background: #1c2c3b;
         align-items: center;
-        padding: 8px 16px;
+        padding: 8px;
         box-sizing: border-box;
         /* -webkit-app-region: drag; */
         /* cursor: move; */
@@ -151,17 +151,10 @@
         /* height: 140px; */
         background: #1c2c3b;
       }
-      main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: calc(100% - 196px);
-      }
       summary {
         display: flex;
         flex-direction: column;
-        padding: 12px 24px;
+        padding: 12px;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
@@ -174,7 +167,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        height: 20px;
+        height: 24px;
         width: 100%;
         /* background-color: var(--paper-blue-grey-900, #263238); */
         color: #FFF;
@@ -195,6 +188,7 @@
   	    white-space: nowrap;
   	    overflow: hidden;
         color: #eee;
+        background-color: #1c2c3b !important;
       }
   		.copyright span {
   			text-overflow: ellipsis;
@@ -227,23 +221,35 @@
         padding: 10px;
         box-sizing: border-box;
         color: #eee;
-        font-size: 24px;
+        font-size: 16px;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        margin: 0 8px;
       }
       .link h3 {
         font-size: 24px;
         padding: 0;
       }
-      i {
-        padding-right: 6px;
-      }
       .fab {
         font-size: 42px;
       }
+
+      section:nth-child(odd) {
+        color: #eee;
+        background-color: #1c2c3b;
+      }
+      section:nth-child(even) {
+        border-radius: 12px;
+        background: #fff;
+      }
       main {
-        position: relative;
         display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         overflow-y: auto;
         overflow-x: hidden;
+        background-color: #1c2c3b;
         height: calc(100% - 48px);
       }
       main section {
@@ -254,7 +260,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        font-size: 20px;
+        font-size: 16px;
         color: #555;
       }
       .flex-two {
@@ -306,12 +312,17 @@
         transform: translate(-50px, -50px);
         transition: transform ease-out 360ms opacity ease-out 360ms;
       }
-
+      [href="/"] {
+        top: 8px;
+        position: absolute;
+      }
       .other-downloads-view {
         position: absolute;
         width: 100%;
       }
-
+      .other-downloads-view section {
+        height: 100%;
+      }
       .other-downloads-view.shown {
         transform: translateY(-100%);
         background: #1c2c3b;
@@ -330,10 +341,7 @@
       }
       .downloads {
         color: #eee;
-      }
-      section:nth-child(odd) {
-        background-color: #1c2c3b;
-        color: #eee;
+        align-items: center;
       }
       .features {
         min-height: auto;
@@ -367,11 +375,28 @@
         letter-spacing: 6px;
       }
       .about {
-        height: 344px;
+        height: 358px;
+      }
+      .flow {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        height: 320px;
+        width: 532px;
+      }
+      .toolbar {
+        height: 48px;
+        width: 100%;
+        align-items: center;
       }
       @media (min-width: 721px) {
         .features summary {
           flex-direction: row;
+        }
+      }
+      @media (min-width: 584px) {
+        .flow {
+          height: 144px;
         }
       }
       .jet {
@@ -393,7 +418,7 @@
         <img class="logo" src="sources/leofcoin.svg"></img>
       </a>
       <span class="flex"></span>
-      <a href="#downloads" class="link">DOWNLOAD</a>
+
       <!-- <a href="#about" class="link">about</a> -->
       <!-- <a href="#contact" class="link">contact</a> -->
       <!-- <a href="#info" class="link">roadmap</a> -->
@@ -409,15 +434,19 @@
       </span>
 
       <section class="welcome">
+        <span class="flex"></span>
         <h2 class="welcome-title"></h2>
         <h2 class="welcome-subtitle"></h2>
+        <span class="flex"></span>
+        <span class="toolbar row">
+          <span class="flex"></span>
+          <a href="#downloads" class="link">DOWNLOAD</a>
+          <a href="paper-wallet" class="link">PAPER WALLET</a>
+        </span>
       </section>
 
-
-
       <section class="about" id="about">
-
-          <i class="fas fa-rocket jet"></i>
+        <i class="fas fa-rocket jet"></i>
         <summary>
           <p>Leofcoin is a peer-to-peer Internet currency that enables instant payments to anyone with internet access in the world.</p>
           <p>Leofcoin is open source & written in JavaScript for maximum client support.</p>
@@ -430,10 +459,17 @@
 
 
       <section class="download-section">
-        <summary class="download">
-          <a href="#downloads" class="other-downloads">Other Downloads</a>
+        <!-- <a>client</a>
+        <a>wetalk</a>
+        <a>wesync</a>
+        <a>wepay</a> -->
+        <summary class="download row">
+          <a href="#downloads" class="other-downloads">DOWNLOADS</a>
+          <span class="flex"></span>
+          <a href="paper-wallet" class="other-downloads">PAPER WALLET</a>
         </summary>
       </section>
+
       <section id="info">
         <summary>
           <ul>
@@ -501,65 +537,26 @@
     <main class="other-downloads-view">
       <section>
         <summary class="downloads">
-          <h3>downloads</h3>
-          <span class="row">
-            <a class="link download windows" href="https://firebasestorage.googleapis.com/v0/b/leofcoin.appspot.com/o/Leofcoin%20Setup%200.1.0.exe?alt=media&token=da0f639e-e5e3-4825-a2f0-125802540f90">
-              <i class="fab fa-windows"></i>
-              <h3>download for windows</h3>
-            </a>
-
-            <a class="link download linux" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d" disabled>
-              <i class="fab fa-linux"></i>
-              <h3>download for linux</h3>
-            </a>
-          </span>
-
-          <span class="row">
-            <a class="link download mac" href="https://firebasestorage.googleapis.com/v0/b/crypto-io.appspot.com/o/cryptocoin%20Setup%200.1.0.exe?alt=media&token=9d5a44fe-faa8-4eac-b78b-66bdd205a98d" disabled>
-              <i class="fab fa-apple"></i>
-              <h3>download for Mac OS X</h3>
-            </a>
-
-            <a class="link download github" href="https://github.com/leofcoin/leofcoin-core" disabled>
-              <i class="fab fa-github-alt"></i>
-              <h3>Source Code</h3>
-            </a>
+          <span class="flow">
+            <download-link name="windows" href="https://github.com/leofcoin/leofcoin-release/releases/download/0.1.4/Leofcoin.Setup.0.1.4.exe"></download-link>
+            <download-link name="linux" href="https://github.com/leofcoin/leofcoin-release/releases/download/0.1.4/Leofcoin.Setup.0.1.4.tar"></download-link>
+            <download-link href="https://github.com/leofcoin/leofcoin"></download-link>
+            <download-link name="mac" href="https://github.com/leofcoin/leofcoin-release/releases/download/0.1.4/Leofcoin.Setup.0.1.4.app"></download-link>
           </span>
         </summary>
       </section>
     </main>
     <script src="sources/typed.min.js" charset="utf-8"></script>
     <script>
-      window.isMobile = () => navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
-      const platform = () => navigator.platform.match(/Win|Mac|Linux/)[0];
-      const cloneDownloadNode = platform => {
-        const node = document.querySelector(`.download.${platform}`);
-        const cloned = node.cloneNode(true);
-        const summary = document.querySelector('summary.download');
-        summary.insertBefore(cloned, summary.querySelector('a'));
-      }
-      if (isMobile()) {
-        // document.querySelector('.mobile-downloads').classList.add('show');
-        // document.querySelector('.downloads').classList.add('hide');
-      } else {
-        switch (platform()) {
-          case 'Win':
-            cloneDownloadNode('windows')
-            break;
-          case 'Mac':
-            cloneDownloadNode('mac')
-            break;
-          case 'Linux':
-            cloneDownloadNode('linux')
-            break;
-        }
-      }
       if (location.hash === '#downloads') {
         location.href = location.href.replace('#downloads', '')
       }
       window.onhashchange = event => {
         if (location.hash === '#downloads') {
+          import('./modules/download-link.js');
           document.querySelector('.other-downloads-view').classList.add('shown')
+        } else {
+          location.reload();
         }
       };
 
@@ -574,27 +571,37 @@
         loop: false,
         showCursor: false
       }));
+      const toolbar = document.querySelector('.toolbar');
+
+      const minmax = (min, max) => {
+        return Math.floor(min + Math.random() * ((max + 1) - min));
+      };
+
+      const title = document.querySelector('.welcome-title');
+      const subtitle = document.querySelector('.welcome-subtitle');
+      const jet = document.querySelector('.jet');
 
       document.querySelector('main').onscroll = event => {
         const top = event.target.scrollTop;
         const width = event.target.clientWidth;
-        const title = document.querySelector('.welcome-title');
-        const subtitle = document.querySelector('.welcome-subtitle');
-        const jet = document.querySelector('.jet');
 
-        if (top > 200) {
-          subtitle.style.opacity = 0;
-        } else if (top < 200) {
-          title.style = `transform: translateY(${top}px);`;
-          subtitle.style = `transform: translateY(${top}px) scale(${(200 - top) / 200});`;
-        }
-        const minmax = (min, max) => {
-          return Math.floor(min + Math.random() * ((max + 1) - min));
-        }
+        requestAnimationFrame(() => {
+          if (top > 499) {
+            toolbar.style.opacity = 0;
+          } else {
+            toolbar.style.opacity = 1;
+          }
+          if (top > 200) {
+            subtitle.style.opacity = 0;
+          } else if (top < 200) {
+            title.style = `transform: translateY(${top}px);`;
+            subtitle.style = `transform: translateY(${top}px) scale(${(200 - top) / 200});`;
+          }
 
-        if ((top * 16) - 620 < (width + 620)) {
-          jet.style = `transform: translateX(${(top * 16) - 620}px) rotate(${minmax(45, 55)}deg);`;
-        }
+          if ((top * 5) - 620 < (width + 620)) {
+            jet.style = `transform: translateX(${(top * 5) - 620}px) rotate(${minmax(45, 55)}deg);`;
+          }
+        })
       }
     </script>
   </body>
