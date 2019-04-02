@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["index.html","9343a6a79aba276b5b446575b8d16930"],["manifest.json","f385e0f16bd99a7d371efdfc11a1d6ff"],["sources/fa-brands.min.css","ec06cebf4ea0452084ee3b44bf9ea126"],["sources/fa-solid.min.css","25d6c1db9feb1b308668e7dbe3727168"],["sources/fontawesome.min.css","b410489ae48dd4a66850069956a767ec"],["sources/icons/copyright.svg","aa38e07bd406ae5801a7e8f47d9e60fb"],["sources/icons/heart.svg","6e659b0423a05a09c21276dd6def2dd0"],["sources/leofcoin.svg","b4e972993e29c34127afc8605fc2bad5"],["sources/leofcoin_128.png","1ee1370ad938cc151e7175b47105a753"],["sources/leofcoin_192.png","d384b63856b5217e50ac9c683df2eebb"],["sources/leofcoin_48.png","eabf168cc54eab670675e8956c4ee1ee"],["sources/leofcoin_96.png","0a6f9d70307061e351d332cc227b92e5"],["sources/typed.min.js","8adfb3a95c5eb23321fc2b40b672fdec"],["sources/typed.min.js.map","1b7018de58ca1a86b9ac98f78977d22c"],["webfonts/fa-brands-400.eot","13db00b7a34fee4d819ab7f9838cc428"],["webfonts/fa-brands-400.svg","a1a749e89f578a49306ec2b055c073da"],["webfonts/fa-brands-400.ttf","c5ebe0b32dc1b5cc449a76c4204d13bb"],["webfonts/fa-brands-400.woff","a046592bac8f2fd96e994733faf3858c"],["webfonts/fa-brands-400.woff2","e8c322de9658cbeb8a774b6624167c2c"],["webfonts/fa-solid-900.eot","8e3c7f5520f5ae906c6cf6d7f3ddcd19"],["webfonts/fa-solid-900.svg","962a1bf31c081691065fe333d9fa8105"],["webfonts/fa-solid-900.ttf","b87b9ba532ace76ae9f6edfe9f72ded2"],["webfonts/fa-solid-900.woff","faff92145777a3cbaf8e7367b4807987"],["webfonts/fa-solid-900.woff2","0ab54153eeeca0ce03978cc463b257f7"]];
+var precacheConfig = [["index.html","97bbc56d8196ba992ce4743be88c8dc1"],["manifest.json","f385e0f16bd99a7d371efdfc11a1d6ff"],["sources/fa-brands.min.css","65a576f765562c9eb72b0fe28d1ea35b"],["sources/fa-solid.min.css","86b64dfe2e70326e6633b3f831a1ea0d"],["sources/fontawesome.min.css","841f3b9560cdf9220b31c7c397841e28"],["sources/icons/copyright.svg","aa38e07bd406ae5801a7e8f47d9e60fb"],["sources/icons/heart.svg","6e659b0423a05a09c21276dd6def2dd0"],["sources/leofcoin.svg","b4e972993e29c34127afc8605fc2bad5"],["sources/leofcoin_128.png","1ee1370ad938cc151e7175b47105a753"],["sources/leofcoin_192.png","d384b63856b5217e50ac9c683df2eebb"],["sources/leofcoin_48.png","eabf168cc54eab670675e8956c4ee1ee"],["sources/leofcoin_96.png","0a6f9d70307061e351d332cc227b92e5"],["sources/typed.min.js","d9cf5d7d54fa8cca67fb100c30b24050"],["sources/typed.min.js.map","1b7018de58ca1a86b9ac98f78977d22c"],["webfonts/fa-brands-400.eot","13db00b7a34fee4d819ab7f9838cc428"],["webfonts/fa-brands-400.svg","65363c4d55617bbeb57d8ce6dcd46099"],["webfonts/fa-brands-400.ttf","c5ebe0b32dc1b5cc449a76c4204d13bb"],["webfonts/fa-brands-400.woff","a046592bac8f2fd96e994733faf3858c"],["webfonts/fa-brands-400.woff2","e8c322de9658cbeb8a774b6624167c2c"],["webfonts/fa-solid-900.eot","8e3c7f5520f5ae906c6cf6d7f3ddcd19"],["webfonts/fa-solid-900.svg","448f2aaa315fa9dce7b2cf6ce31caed6"],["webfonts/fa-solid-900.ttf","b87b9ba532ace76ae9f6edfe9f72ded2"],["webfonts/fa-solid-900.woff","faff92145777a3cbaf8e7367b4807987"],["webfonts/fa-solid-900.woff2","0ab54153eeeca0ce03978cc463b257f7"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -176,10 +176,10 @@ self.addEventListener('install', function(event) {
         );
       });
     }).then(function() {
-
+      
       // Force the SW to transition from installing -> active state
       return self.skipWaiting();
-
+      
     })
   );
 });
@@ -199,9 +199,9 @@ self.addEventListener('activate', function(event) {
         );
       });
     }).then(function() {
-
+      
       return self.clients.claim();
-
+      
     })
   );
 });
@@ -262,7 +262,7 @@ self.addEventListener('fetch', function(event) {
 
 
 // *** Start of auto-included sw-toolbox code. ***
-/*
+/* 
  Copyright 2016 Google Inc. All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -286,3 +286,7 @@ self.addEventListener('fetch', function(event) {
 // Runtime cache configuration, using the sw-toolbox library.
 
 toolbox.router.get("**", toolbox.cacheFirst, {});
+
+
+
+
